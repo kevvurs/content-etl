@@ -1,23 +1,18 @@
-package service
+package main
 
 import (
-	"github.com/GoIncremental/negroni"
 	"github.com/gorilla/mux"
 	"github.com/unrolled/render"
-	"log"
 )
 
 // Configures and returns a server instance
-func NewServer() *negroni.Negroni {
-	log.Println("Launching Go server")
+func BuildRouter() *mux.Router {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
 	})
-	n := negroni.Classic()
 	mx := mux.NewRouter()
 	initRoutes(mx, formatter)
-	n.UseHandler(mx)
-	return n
+	return mx
 }
 
 // Initializes the app's HTTP routes

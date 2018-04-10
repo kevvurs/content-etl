@@ -2,17 +2,15 @@ package main
 
 import (
 	service "github.com/kevvurs/newsroom-content-persistence/service"
+	"google.golang.org/appengine"
 	"log"
-	"os"
+	"net/http"
 )
 
 func main() {
-	log.Println("Running alpha from main")
-	port := os.Getenv("PORT")
-	if len(port) == 0 {
-		port = "3000"
+	log.Println("Booting up newsroom-content-persistence")
+	if router := service.BuildRouter(); router != nil {
+		http.Handle("/", router)
 	}
-
-	server := service.NewServer()
-	server.Run(":" + port)
+	appengine.Main()
 }
