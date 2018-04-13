@@ -4,13 +4,12 @@ import (
   "crypto/md5"
   "fmt"
   "time"
-  "golang.org/x/net/context"
 )
 
-func buildContent(ctx context.Context, arts []Article) []*Content {
+func buildContent(arts []Article) []*Content {
   content := make([]*Content, len(arts))
   for idx, art := range arts {
-    content[idx] = polish(&art)
+    content[idx] = polish(ctx, &art)
   }
   return content
 }
@@ -32,7 +31,8 @@ func hashId(source, author, title string) string {
   contentId := fmt.Sprintf("%s:%s:%s", source, author, title)
   h := md5.New()
   b := h.Sum([]byte(contentId))
-  return string(b)
+  s := fmt.Sprintf("%x", b)
+  return s
 }
 
 func parseTimestamp(ts string) time.Time {

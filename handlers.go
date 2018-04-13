@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/unrolled/render"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/log"
 	"encoding/json"
   "net/http"
+	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
+	"github.com/unrolled/render"
 )
 
 // Ping status for Go server
@@ -29,7 +29,7 @@ func etlHandler(formatter *render.Render) http.HandlerFunc {
 				log.Errorf(ctx, "Failed to deserialize news content <%v>", err)
 			} else {
 				response.Volume = len(news.Articles)
-				ctn := buildContent(ctx, news.Articles)
+				ctn := buildContent(news.Articles)
 				if save(ctx, ctn); err != nil {
 					log.Errorf(ctx, "Failed to persist content <%v>", err)
 				} else {
