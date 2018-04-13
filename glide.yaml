@@ -1,9 +1,0 @@
-package: github.com/kevvurs/newsroom-content-persistence
-import:
-- package: github.com/gorilla/mux
-  version: ^1.6.1
-- package: github.com/GoIncremental/negroni
-  version: ^0.1.0
-- package: github.com/unrolled/render
-- package: google.golang.org/appengine
-  version: ^1.0.0
