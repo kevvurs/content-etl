@@ -1,0 +1,5 @@
+cron:
+- description: "etl content feed"
+  url: /ping
+  target: content-etl
+  schedule: every 10 mins
