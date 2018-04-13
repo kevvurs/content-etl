@@ -1,7 +1,6 @@
 package main
 
 import (
-	service "github.com/kevvurs/newsroom-content-persistence/service"
 	"google.golang.org/appengine"
 	"log"
 	"net/http"
@@ -9,7 +8,7 @@ import (
 
 func main() {
 	log.Println("Booting up newsroom-content-persistence")
-	if router := service.BuildRouter(); router != nil {
+	if router := buildRouter(); router != nil {
 		http.Handle("/", router)
 	}
 	appengine.Main()

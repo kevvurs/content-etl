@@ -15,3 +15,6 @@ newsroom-content-persistence
 .glide/
 vendor/
 .vendor/
+
+# Share code, not configuration
+/app.yaml

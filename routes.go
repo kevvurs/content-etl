@@ -6,7 +6,7 @@ import (
 )
 
 // Configures and returns a server instance
-func BuildRouter() *mux.Router {
+func buildRouter() *mux.Router {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
 	})
@@ -18,4 +18,6 @@ func BuildRouter() *mux.Router {
 // Initializes the app's HTTP routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/ping", pingHandler(formatter)).Methods("GET")
+	mx.HandleFunc("/etl", etlHandler(formatter)).Methods("GET")
+	mx.HandleFunc("/_ah/warmup", pingHandler(formatter)).Methods("GET")
 }

@@ -1,6 +1,20 @@
+application: boomerang-686
+module: content-etl
+version: m1-r3-beta
 runtime: go
 api_version: go1.8
 
+inbound_services:
+- warmup
+env_variables:
+  APP_SECRET: '1aadc454d9224dadac29865bc29ea0aa'
+
 handlers:
 - url: /ping
+  script: _go_app
+
+- url: /etl
+  script: _go_app
+
+- url: /_ah/warmup
   script: _go_app
