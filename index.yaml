@@ -1,0 +1,10 @@
+indexes:
+  - kind: Article
+    ancestor: no
+    properties:
+      - name: id
+      - name: title
+      - name: source
+      - name: url
+      - name: publishedAt
+        direction: desc
