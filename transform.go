@@ -9,7 +9,7 @@ import (
 func buildContent(arts []Article) []*Content {
   content := make([]*Content, len(arts))
   for idx, art := range arts {
-    content[idx] = polish(ctx, &art)
+    content[idx] = polish(&art)
   }
   return content
 }
@@ -29,8 +29,7 @@ func polish(art *Article) *Content {
 
 func hashId(source, author, title string) string {
   contentId := fmt.Sprintf("%s:%s:%s", source, author, title)
-  h := md5.New()
-  b := h.Sum([]byte(contentId))
+  b := md5.Sum([]byte(contentId))
   s := fmt.Sprintf("%x", b)
   return s
 }
