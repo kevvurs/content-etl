@@ -1,5 +1,9 @@
 cron:
-- description: "etl content feed"
+- description: "status ping"
   url: /ping
   target: content-etl
   schedule: every 1 hours
+- description: "etl content feed"
+  url: /etl
+  target: content-etl
+  schedule: every 10 mins
