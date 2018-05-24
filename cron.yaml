@@ -6,4 +6,8 @@ cron:
 - description: "etl content feed"
   url: /etl
   target: content-etl
-  schedule: every 10 mins
+  schedule: every 15 mins
+- description: "cache expiration"
+  url: /clean
+  target: content-etl
+  schedule: every 24 hours

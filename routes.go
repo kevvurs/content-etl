@@ -19,5 +19,6 @@ func buildRouter() *mux.Router {
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/ping", pingHandler(formatter)).Methods("GET")
 	mx.HandleFunc("/etl", etlHandler(formatter)).Methods("GET")
+	mx.HandleFunc("/clean", destroyHandler(formatter)).Methods("GET")
 	mx.HandleFunc("/_ah/warmup", pingHandler(formatter)).Methods("GET")
 }

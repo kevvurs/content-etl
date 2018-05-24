@@ -1,11 +1,12 @@
 package main
 
 import (
-	"encoding/json"
+  "encoding/json"
   "net/http"
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/log"
-	"github.com/unrolled/render"
+  "time"
+  "google.golang.org/appengine"
+  "google.golang.org/appengine/log"
+  "github.com/unrolled/render"
 )
 
 // Ping status for Go server
@@ -40,5 +41,20 @@ func etlHandler(formatter *render.Render) http.HandlerFunc {
 			log.Errorf(ctx, "Failed to retrieve news content")
 		}
 		formatter.JSON(w, http.StatusOK, response)
+	}
+}
+
+// Remove expired articles
+func destroyHandler(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+		ctx := appengine.NewContext(req)
+		s := http.StatusNoContent
+		t := time.Now()
+		cutoff := t.AddDate(0, 0, -7)
+		if err := delete(ctx, cutoff); err != nil {
+          log.Errorf(ctx, "Failed to clean the data cache")
+          s = http.StatusInternalServerError
+		}
+		formatter.JSON(w, s, nil)
 	}
 }
