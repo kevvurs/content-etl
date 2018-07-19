@@ -1,4 +1,4 @@
-# NewsRoom Project
+# Scatterfeed
 I am building a web platform for news content similar to news.google.com.
 The most significant feature of my webapp will be the ability for users to
 post comments externally on the content items and rate the content across

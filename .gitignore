@@ -18,3 +18,4 @@ vendor/
 
 # Share code, not configuration
 /app.yaml
+/.idea/
