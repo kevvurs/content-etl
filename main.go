@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	log.Println("Booting up newsroom-content-persistence")
+	log.Println("Booting up content-etl")
 	if router := buildRouter(); router != nil {
 		http.Handle("/", router)
 	}
